@@ -96,4 +96,37 @@ bool boggleHelper(const std::set<std::string>& dict, const std::set<std::string>
 {
 //add your solution here!
 
+if (c >= board.size()){
+  return false;
+}
+
+if (r >= board.size()){
+  return false;
+}
+
+word = word + board[r][c];
+
+bool check [2];
+
+
+
+check[0] = (dict.count(word) > 0);
+check[1] = boggleHelper(dict, prefix, board, word, result, r + dr, c + dc, dr, dc);
+
+if (!check[1]){
+  if (check[0]){
+    result.insert(word);
+  }
+
+  if (check[0]){
+    return check[0];
+  }
+
+  if (check[1]){
+    return check[1];
+  }
+}
+
+
+
 }
